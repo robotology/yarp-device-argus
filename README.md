@@ -11,13 +11,13 @@ The **FRAMOS™** cameras currently compatible with YARP are:
 
 # 1. License
 
-[![License](https://img.shields.io/badge/license-BSD--3--Clause%20%2B%20others-19c2d8.svg)](https://github.com/robotology/yarp-device-realsense2/blob/master/LICENSE)
+[![License](https://img.shields.io/badge/license-BSD--3--Clause%20%2B%20others-19c2d8.svg)](https://github.com/robotology/yarp-device-argus/blob/main/LICENSE)
 
 This software may be modified and distributed under the terms of the
 BSD-3-Clause license. See the accompanying LICENSE file for details.
 
 The argusCamera device uses the
-[Libargus API](https://docs.nvidia.com/jetson/l4t-multimedia/group__LibargusAPI.html), which is a module included into the [Jetson Linux Multimedia API](https://docs.nvidia.com/jetson/l4t-multimedia/index.html), released
+[Libargus API](https://docs.nvidia.com/jetson/l4t-multimedia/group__LibargusAPI.html), which is a module included in the [Jetson Linux Multimedia API](https://docs.nvidia.com/jetson/l4t-multimedia/index.html), released
 under the [NVIDIA license](https://docs.nvidia.com/jetson/l4t-multimedia/nvidia_legal.html).
 See the relative documentation for the terms of the license.
 
@@ -99,16 +99,16 @@ See the documentation for more details about each interface.
 |:----------------:|:-----------------------:|
 | `argusCamera`    | `frameGrabber_nws_yarp` |
 
-`yarp-device-argus` is based on [`yarpDeviceParamParserGenerator`](https://github.com/robotology/yarp/discussions/3081). The parameter accepted by this device are:
+`yarp-device-argus` is based on [`yarpDeviceParamParserGenerator`](https://github.com/robotology/yarp/discussions/3081). The parameters accepted by this device are:
 
 | Group name      | Parameter name     | Type            | Units   | Default Value  | Required | Description                                    | Notes                            |
 |:---------------:|:------------------:|:---------------:|:-------:|:--------------:|:--------:|:----------------------------------------------:|:--------------------------------:|
 |                 | d                  | int             | -       | 0              |  No      | Enumeration of the camera device               |                                  |
-|                 | period             | double          | seconds | 0.033          |  No      | Refresh period of acquistion of the camera in s| Check the camera documentation for the fps cap |
-|                 | rotation           | double          | degrees | 0.0            |  No      | Rotation applied from the center of the image  | Depending the size requested some rotations are not allowed. The rotation worse the performance of the device. Allowed values: 0.0, 90.0, -90.0, 180.0. |
-|                 | width              | int             | pixel   |   640          | No                          | Width of the images requested to the camera                       | The cameras has a value cap for the width of the image that can provide, check the documentation. Zero or negative value not accepted |
-|                 | height             | int             | pixel   |   480          | No                          | Height of the images requested to the camera                       | The cameras has a value cap for the width of the image that can provide, check the documentation. Zero or negative value not accepted |
-|                 | rotation_with_crop | bool            |     -   |   false        | No                          | The rotation, if the param is true, is obtained swapping x with y                       | The image will have a resolution swapper respect to what is requested |
+|                 | period             | double          | seconds | 0.033          |  No      | Refresh period of acquisition of the camera in s| Check the camera documentation for the fps cap |
+|                 | rotation           | double          | degrees | 0.0            |  No      | Rotation applied from the center of the image  | Depending the size requested some rotations are not allowed. The rotation worsens the performance of the device. Allowed values: 0.0, 90.0, -90.0, 180.0. |
+|                 | width              | int             | pixel   |   640          | No                          | Width of the images requested to the camera                       | The cameras has a value cap for the width of the image that can be provided, check the documentation. Zero or negative value not accepted |
+|                 | height             | int             | pixel   |   480          | No                          | Height of the images requested to the camera                       | The cameras has a value cap for the width of the image that can be provided, check the documentation. Zero or negative value not accepted |
+|                 | rotation_with_crop | bool            |     -   |   false        | No                          | The rotation, if the param is true, is obtained by swapping x with y                       | The image will have a resolution swapped with respect to what is requested |
 
 **Suggested resolutions**
 
@@ -120,7 +120,7 @@ The performances reported in the table below are referred to the FRAMOS-IMX415 c
 |1920x1080|mjpeg|40|50|
 |3840x2160|mjpeg|9|12|
 
-# 4. Informations for developers
+# 4. Information for developers
 
 Maintainers
 --------------
