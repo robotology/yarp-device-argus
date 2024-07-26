@@ -41,7 +41,11 @@ Before proceeding further, please install the following dependencies:
 > As stated [here](https://docs.nvidia.com/metropolis/deepstream/dev-guide/text/DS_FAQ.html?highlight=batch%20size#how-to-fix-cannot-allocate-memory-in-static-tls-block-error), this could be solved with:
 > `export LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libgomp.so.1`
 
-## 2.2. Build and install yarp-device-argus
+## 2.2. Configure the hardware
+
+After installing the necessary dependencies, please follow [this guide](https://github.com/robotology/yarp-device-argus/tree/main/doc/setup_orin-nx_framos-imx415.md) to configure and setup the `Jetson Orin NX` board to use the `FRAMOS-IMX415` cameras.
+
+## 2.3. Build and install yarp-device-argus
 
 ```bash
 mkdir build
@@ -57,7 +61,7 @@ In order to make the device detectable, add `<installation_path>/share/yarp` to 
 
 Alternatively, if `YARP` has been installed using the [robotology-superbuild](https://github.com/robotology/robotology-superbuild), it is possible to use `<directory-where-you-downloaded-robotology-superbuild>/build/install` as the `<installation_path>`.
 
-## 2.3. How to run argusCamera driver
+## 2.4. How to run argusCamera driver
 
 From command line:
 
