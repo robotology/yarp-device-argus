@@ -15,7 +15,7 @@ list(APPEND CMAKE_MODULE_PATH "/usr/src/jetson_multimedia_api/argus/cmake/")
 set(ARGUS_INCLUDE_DIR "/usr/src/jetson_multimedia_api/argus/include")
 
 find_package(YCM 0.16.2 REQUIRED)
-find_package(YARP 3.12.0 COMPONENTS os sig dev cv OPTIONAL_COMPONENTS math REQUIRED)
+find_package(YARP 3.9.0 COMPONENTS os sig dev cv OPTIONAL_COMPONENTS math REQUIRED)
 find_package(Argus REQUIRED)
 find_package(OpenCV REQUIRED) 
 find_package(CUDA QUIET)
