@@ -27,7 +27,7 @@ See the relative documentation for the terms of the license.
 Before proceeding further, please install the following dependencies:
 
 - [Nvidia JetPack v5.1.2](https://developer.nvidia.com/embedded/jetpack-sdk-512) for `Jetson Orin NX` + [BSP r35.4.1](https://connecttech.com/ftp/Drivers/L4T-Release-Notes/Jetson-Orin-NX-Orin-Nano/ORIN-NX-NANO-35.4.1_.pdf) for `Boson for FRAMOS` carrier board
-- [YARP 3.10](https://www.yarp.it/latest/) or greater
+- [YARP 3.10.1](https://github.com/robotology/yarp/releases/tag/v3.10.1), the IMX415 are stuck to that version https://github.com/icub-tech-iit/study-icub-headedge/issues/233#issuecomment-2842125688
 - `Jetson Linux Multimedia API` (already installed with JetPack, otherwise it should be installed with `sudo apt install nvidia-l4t-jetson-multimedia-api`)
 - [OpenCV](https://opencv.org/) + [CUDA](https://opencv.org/platforms/cuda/) (optional)
 
