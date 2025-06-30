@@ -7,7 +7,8 @@ This is the [argus](https://www.framos.com/en/products/fsm-imx415c-01s-v1a-23740
 It supports the [FRAMOS](https://www.framos.com/en/product-catalog/modules/framos-sensor-modules) cameras.
 
 The **FRAMOS™** cameras currently compatible with YARP are:
-- [FRAMOS-IMX415](ttps://www.framos.com/en/products/fsm-imx415c-01s-v1a-23740)
+- FRAMOS-IMX415 (obsolete)
+- FRAMOS-IMX678
 
 # 1. License
 
@@ -26,8 +27,8 @@ See the relative documentation for the terms of the license.
 ## 2.1. Dependencies
 Before proceeding further, please install the following dependencies:
 
-- [Nvidia JetPack v5.1.2](https://developer.nvidia.com/embedded/jetpack-sdk-512) for `Jetson Orin NX` + [BSP r35.4.1](https://connecttech.com/ftp/Drivers/L4T-Release-Notes/Jetson-Orin-NX-Orin-Nano/ORIN-NX-NANO-35.4.1_.pdf) for `Boson for FRAMOS` carrier board
-- [YARP 3.10.1](https://github.com/robotology/yarp/releases/tag/v3.10.1), the IMX415 are stuck to that version https://github.com/icub-tech-iit/study-icub-headedge/issues/233#issuecomment-2842125688
+- [Nvidia JetPack v6.2](https://developer.nvidia.com/embedded/jetpack-sdk-62) for `Jetson Orin NX` + [BSP r36.4.3](https://connecttech.com/ftp/Drivers/L4T-Release-Notes/Jetson-Orin-NX-Orin-Nano/ORIN-NX-NANO-36.4.3.pdf) for `Boson for FRAMOS` carrier board
+- [YARP 3.12](https://github.com/robotology/yarp/releases/tag/v3.12.0)
 - `Jetson Linux Multimedia API` (already installed with JetPack, otherwise it should be installed with `sudo apt install nvidia-l4t-jetson-multimedia-api`)
 - [OpenCV](https://opencv.org/) + [CUDA](https://opencv.org/platforms/cuda/) (optional)
 
@@ -43,7 +44,7 @@ Before proceeding further, please install the following dependencies:
 
 ## 2.2. Configure the hardware
 
-After installing the necessary dependencies, please follow [this guide](https://github.com/robotology/yarp-device-argus/tree/main/doc/setup_orin-nx_framos-imx415.md) to configure and setup the `Jetson Orin NX` board to use the `FRAMOS-IMX415` cameras.
+After installing the necessary dependencies, please follow [this guide](https://github.com/robotology/yarp-device-argus/tree/main/doc/setup_orin-nx_framos-imx415.md) to configure and setup the `Jetson Orin NX` board to use the `FRAMOS-IMX678` cameras.
 
 ## 2.3. Build and install yarp-device-argus
 
