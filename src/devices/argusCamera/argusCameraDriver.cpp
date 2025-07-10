@@ -49,7 +49,7 @@ static const std::map<double, double> rotationToCVRot{{0.0, 0.0}, {90.0, cv::ROT
 
 static const std::map<std::string, std::vector<Argus::Size2D<uint32_t>>> cameraResolutions{
     {"imx415", {Size2D<uint32_t>(1280, 720), Size2D<uint32_t>(1920, 1080), Size2D<uint32_t>(3840, 2160)}},
-    {"imx678", {Size2D<uint32_t>(3856, 2180), Size2D<uint32_t>(2608, 1964), Size2D<uint32_t>(1920, 1080)}}
+    {"imx678", {Size2D<uint32_t>(3840, 2160), Size2D<uint32_t>(2560, 1440), Size2D<uint32_t>(1920, 1080)}}
 };
 
 // We usually set the features through a range between 0 an 1, we have to translate it in meaninful value for the camera
