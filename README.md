@@ -117,13 +117,13 @@ See the documentation for more details about each interface.
 
 **Suggested resolutions**
 
-The performances reported in the table below are referred to the FRAMOS-IMX415 cameras.
+The performances reported in the table below are referred to the FRAMOS-IMX678 cameras.
 
 |resolution|carrier|fps w/ CUDA|fps w/o CUDA|
 |:-:|:-:|:-:|:-:|
-|640x480|mjpeg|75|90|
-|1920x1080|mjpeg|40|50|
-|3840x2160|mjpeg|9|12|
+|1920x1080|mjpeg|40|33|
+|2560x1440|mjpeg|20|20|
+|3840x2160|mjpeg|10|10|
 
 # 4. Information for developers
 
