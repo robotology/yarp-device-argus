@@ -30,7 +30,7 @@ Before proceeding further, please install the following dependencies:
 - [Nvidia JetPack v6.2](https://developer.nvidia.com/embedded/jetpack-sdk-62) for `Jetson Orin NX` + [BSP r36.4.3](https://connecttech.com/ftp/Drivers/L4T-Release-Notes/Jetson-Orin-NX-Orin-Nano/ORIN-NX-NANO-36.4.3.pdf) for `Boson for FRAMOS` carrier board
 - [YARP 3.12](https://github.com/robotology/yarp/releases/tag/v3.12.0)
 - `Jetson Linux Multimedia API` (already installed with JetPack, otherwise it should be installed with `sudo apt install nvidia-l4t-jetson-multimedia-api`)
-- [OpenCV](https://opencv.org/) + [CUDA](https://opencv.org/platforms/cuda/) (optional)
+- [OpenCV](https://opencv.org/) + [CUDA](https://opencv.org/platforms/cuda/) (optional, use [this script](https://github.com/AastaNV/JEP/blob/master/script/install_opencv4.9.0_Jetpack6.0.sh))
 
 > [!Warning]
 > Sometimes, on Jetson platforms, an error similar to the one below can occur:
