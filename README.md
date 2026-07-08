@@ -48,6 +48,15 @@ After installing the necessary dependencies, please follow [this guide](https://
 
 ## 2.3. Build and install yarp-device-argus
 
+Before moving to the build and install steps, there are some workarounds to be done manually. 
+
+```bash
+cd /usr/src/jetson_multimedia_api/include
+sudo cp nvbufsurface.h nvbufsurftransform.h NvBufSurface.h ../argus/include/EGLStream/NV/
+```
+
+Then, coming back to the `yarp-device-argus` folder:
+
 ```bash
 mkdir build
 cd build
