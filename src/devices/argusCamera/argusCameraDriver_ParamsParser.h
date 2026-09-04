@@ -8,7 +8,7 @@
 // This is an automatically generated file. Please do not edit it.
 // It will be re-generated if the cmake flag ALLOW_DEVICE_PARAM_PARSER_GERNERATION is ON.
 
-// Generated on: Thu Jun 26 16:17:20 2025
+// Generated on: Fri Sep  4 14:58:36 2026
 
 
 #ifndef ARGUSCAMERADRIVER_PARAMSPARSER_H
@@ -23,18 +23,17 @@
 * This class is the parameters parser for class argusCameraDriver.
 *
 * These are the used parameters:
-* | Group name | Parameter name     | Type   | Units   | Default Value | Required | Description                                                       | Notes                                                                                                                                                   |
-* |:----------:|:------------------:|:------:|:-------:|:-------------:|:--------:|:-----------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------:|
-* | -          | d                  | int    | -       | 0             | 0        | Enumeration of the camera device                                  | -                                                                                                                                                       |
-* | -          | period             | double | seconds | 0.033         | 0        | Refresh period of acquistion of the camera in s                   | Check the camera documentation for the fps cap                                                                                                          |
-* | -          | rotation           | double | degrees | 0.0           | 0        | Rotation applied from the center of the image                     | Depending the size requested some rotations are not allowed. The rotation worse the performance of the device. Allowed values: 0.0, 90.0, -90.0, 180.0. |
-* | -          | width              | int    | pixel   | 640           | 0        | Width of the images requested to the camera                       | The cameras has a value cap for the width of the image that can provide, check the documentation. Zero or negative value not accepted                   |
-* | -          | height             | int    | pixel   | 480           | 0        | Height of the images requested to the camera                      | The cameras has a value cap for the width of the image that can provide, check the documentation. Zero or negative value not accepted                   |
-* | -          | rotation_with_crop | bool   | -       | false         | 0        | The rotation, if the param is true, is obtained swapping x with y | The image will have a resolution swapper respect to what is requested                                                                                   |
+* | Group name | Parameter name | Type   | Units   | Default Value | Required | Description                                     | Notes                                                                                                                                                   |
+* |:----------:|:--------------:|:------:|:-------:|:-------------:|:--------:|:-----------------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------:|
+* | -          | d              | int    | -       | 0             | 0        | Enumeration of the camera device                | -                                                                                                                                                       |
+* | -          | period         | double | seconds | 0.033         | 0        | Refresh period of acquistion of the camera in s | Check the camera documentation for the fps cap                                                                                                          |
+* | -          | rotation       | double | degrees | 0.0           | 0        | Rotation applied from the center of the image   | rotation_with_crop is no longer supported. With 90.0 or -90.0, the output width and height are swapped: a 1920x1080 request produces a 1080x1920 image. A 180.0 rotation preserves the dimensions. Depending the size requested some rotations are not allowed. Rotation worsens device performance. Allowed values: 0.0, 90.0, -90.0, 180.0. |
+* | -          | width          | int    | pixel   | 640           | 0        | Width of the images requested to the camera     | The cameras has a value cap for the width of the image that can provide, check the documentation. Zero or negative value not accepted                   |
+* | -          | height         | int    | pixel   | 480           | 0        | Height of the images requested to the camera    | The cameras has a value cap for the width of the image that can provide, check the documentation. Zero or negative value not accepted                   |
 *
 * The device can be launched by yarpdev using one of the following examples (with and without all optional parameters):
 * \code{.unparsed}
-* yarpdev --device argusCamera --d 0 --period 0.033 --rotation 0.0 --width 640 --height 480 --rotation_with_crop false
+* yarpdev --device argusCamera --d 0 --period 0.033 --rotation 0.0 --width 640 --height 480
 * \endcode
 *
 * \code{.unparsed}
@@ -67,14 +66,12 @@ public:
     const std::string m_rotation_defaultValue = {"0.0"};
     const std::string m_width_defaultValue = {"640"};
     const std::string m_height_defaultValue = {"480"};
-    const std::string m_rotation_with_crop_defaultValue = {"false"};
 
     int m_d = {0};
     double m_period = {0.033};
     double m_rotation = {0.0};
     int m_width = {640};
     int m_height = {480};
-    bool m_rotation_with_crop = {false};
 
     bool          parseParams(const yarp::os::Searchable & config) override;
     std::string   getDeviceClassName() const override { return m_device_classname; }

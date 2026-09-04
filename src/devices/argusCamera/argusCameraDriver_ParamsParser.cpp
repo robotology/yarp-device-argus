@@ -8,7 +8,7 @@
 // This is an automatically generated file. Please do not edit it.
 // It will be re-generated if the cmake flag ALLOW_DEVICE_PARAM_PARSER_GERNERATION is ON.
 
-// Generated on: Thu Jun 26 16:17:20 2025
+// Generated on: Fri Sep  4 14:58:36 2026
 
 
 #include "argusCameraDriver_ParamsParser.h"
@@ -33,7 +33,6 @@ std::vector<std::string> argusCameraDriver_ParamsParser::getListOfParams() const
     params.push_back("rotation");
     params.push_back("width");
     params.push_back("height");
-    params.push_back("rotation_with_crop");
     return params;
 }
 
@@ -63,12 +62,6 @@ bool argusCameraDriver_ParamsParser::getParamValue(const std::string& paramName,
     if (paramName =="height")
     {
         paramValue = std::to_string(m_height);
-        return true;
-    }
-    if (paramName =="rotation_with_crop")
-    {
-        if (m_rotation_with_crop==true) paramValue = "true";
-        else paramValue = "false";
         return true;
     }
 
@@ -168,20 +161,6 @@ bool      argusCameraDriver_ParamsParser::parseParams(const yarp::os::Searchable
         prop_check.unput("height");
     }
 
-    //Parser of parameter rotation_with_crop
-    {
-        if (config.check("rotation_with_crop"))
-        {
-            m_rotation_with_crop = config.find("rotation_with_crop").asBool();
-            yCInfo(argusCameraDriverParamsCOMPONENT) << "Parameter 'rotation_with_crop' using value:" << m_rotation_with_crop;
-        }
-        else
-        {
-            yCInfo(argusCameraDriverParamsCOMPONENT) << "Parameter 'rotation_with_crop' using DEFAULT value:" << m_rotation_with_crop;
-        }
-        prop_check.unput("rotation_with_crop");
-    }
-
     /*
     //This code check if the user set some parameter which are not check by the parser
     //If the parser is set in strict mode, this will generate an error
@@ -220,13 +199,12 @@ std::string      argusCameraDriver_ParamsParser::getDocumentationOfDeviceParams(
     doc = doc + std::string("This is the list of the parameters accepted by the device:\n");
     doc = doc + std::string("'d': Enumeration of the camera device\n");
     doc = doc + std::string("'period': Refresh period of acquistion of the camera in s\n");
-    doc = doc + std::string("'rotation': Rotation applied from the center of the image\n");
+    doc = doc + std::string("'rotation': Rotation applied from the center of the image. rotation_with_crop is no longer supported. With 90.0 or -90.0, the output width and height are swapped: a 1920x1080 request produces a 1080x1920 image. A 180.0 rotation preserves the dimensions.\n");
     doc = doc + std::string("'width': Width of the images requested to the camera\n");
     doc = doc + std::string("'height': Height of the images requested to the camera\n");
-    doc = doc + std::string("'rotation_with_crop': The rotation, if the param is true, is obtained swapping x with y\n");
     doc = doc + std::string("\n");
     doc = doc + std::string("Here are some examples of invocation command with yarpdev, with all params:\n");
-    doc = doc + " yarpdev --device argusCamera --d 0 --period 0.033 --rotation 0.0 --width 640 --height 480 --rotation_with_crop false\n";
+    doc = doc + " yarpdev --device argusCamera --d 0 --period 0.033 --rotation 0.0 --width 640 --height 480\n";
     doc = doc + std::string("Using only mandatory params:\n");
     doc = doc + " yarpdev --device argusCamera\n";
     doc = doc + std::string("=============================================\n\n");    return doc;

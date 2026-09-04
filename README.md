@@ -76,7 +76,7 @@ Alternatively, if `YARP` has been installed using the [robotology-superbuild](ht
 From command line:
 
 ```bash
-yarpdev --device argusCamera --d 0 --period 0.011 --rotation 90.0 --width 1920 --height 1080 --rotation_with_crop false
+yarpdev --device argusCamera --d 0 --period 0.011 --rotation 90.0 --width 1920 --height 1080
 ```
 
 or from the root of the repository:
@@ -94,7 +94,6 @@ period              0.011
 rotation            90.0
 width               1920
 height              1080
-rotation_with_crop  false
 ```
 
 Otherwise, the device can be launched via `yarprorbotinterface` as:
@@ -119,10 +118,9 @@ See the documentation for more details about each interface.
 |:---------------:|:------------------:|:---------------:|:-------:|:--------------:|:--------:|:----------------------------------------------:|:--------------------------------:|
 |                 | d                  | int             | -       | 0              |  No      | Enumeration of the camera device               |                                  |
 |                 | period             | double          | seconds | 0.033          |  No      | Refresh period of acquisition of the camera in s| Check the camera documentation for the fps cap |
-|                 | rotation           | double          | degrees | 0.0            |  No      | Rotation applied from the center of the image  | Depending the size requested some rotations are not allowed. The rotation worsens the performance of the device. Allowed values: 0.0, 90.0, -90.0, 180.0. |
+|                 | rotation           | double          | degrees | 0.0            |  No      | Rotation applied from the center of the image  | With 90.0 or -90.0, the output width and height are swapped: a 1920x1080 request produces a 1080x1920 image. A 180.0 rotation preserves the dimensions. Depending the size requested some rotations are not allowed. Rotation worsens device performance. Allowed values: 0.0, 90.0, -90.0, 180.0. |
 |                 | width              | int             | pixel   |   640          | No                          | Width of the images requested to the camera                       | The cameras has a value cap for the width of the image that can be provided, check the documentation. Zero or negative value not accepted |
 |                 | height             | int             | pixel   |   480          | No                          | Height of the images requested to the camera                       | The cameras has a value cap for the width of the image that can be provided, check the documentation. Zero or negative value not accepted |
-|                 | rotation_with_crop | bool            |     -   |   false        | No                          | The rotation, if the param is true, is obtained by swapping x with y                       | The image will have a resolution swapped with respect to what is requested |
 
 **Suggested resolutions**
 

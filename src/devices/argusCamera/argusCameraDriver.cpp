@@ -45,7 +45,6 @@ static const std::map<cameraFeature_id_t, std::pair<double, double>> featureMinM
                                                                                    {YARP_FEATURE_GAIN, {1.0, 3981.07}}}; 
 
 static const std::map<double, NV::Rotation> rotationToNVRot{{0.0, NV::ROTATION_0}, {90.0, NV::ROTATION_90}, {-90.0, NV::ROTATION_270}, {180.0, NV::ROTATION_180}};
-static const std::map<double, double> rotationToCVRot{{0.0, 0.0}, {90.0, cv::ROTATE_90_COUNTERCLOCKWISE}, {-90.0, cv::ROTATE_90_CLOCKWISE}, {180.0, cv::ROTATE_180}};
 
 static const std::map<std::string, std::vector<Argus::Size2D<uint32_t>>> cameraResolutions{
     {"imx415", {Size2D<uint32_t>(1280, 720), Size2D<uint32_t>(1920, 1080), Size2D<uint32_t>(3840, 2160)}},
@@ -286,12 +285,9 @@ bool argusCameraDriver::setRgbResolution(int width, int height)
             yCInfo(ARGUS_CAMERA) << "Nearest resolution found:" << nearestWidth << "x" << nearestHeight;
         }
 
-        if (m_rotation_with_crop)
+        if (m_rotation == -90.0 || m_rotation == 90.0)
         {
-            if (m_rotation == -90.0 || m_rotation == 90.0)
-            {
-                std::swap(width, height);
-            }
+            std::swap(width, height);
         }
 
         Size2D<uint32_t> resolution{nearestWidth, nearestHeight};
@@ -721,15 +717,7 @@ bool argusCameraDriver::getImage(yarp::sig::ImageOf<yarp::sig::PixelRgb>& image)
             yCError(ARGUS_CAMERA) << "IImageNativeBuffer not supported by IImage"; 
         }
 
-        double rotation = 0.0;
-        if (m_rotation_with_crop)
-        {
-            // If m_rotation_with_crop = true, width and height are swapped and the image is stored in a buffer already rotated by m_rotation.
-            // In this way, no further transformations need to be done with OpenCV.
-            rotation = m_rotation;
-        }
-
-        int fd = iNativeBuffer->createNvBuffer(image2d->getSize(), NVBUF_COLOR_FORMAT_RGBA, NVBUF_LAYOUT_PITCH, rotationToNVRot.at(rotation));
+        int fd = iNativeBuffer->createNvBuffer(image2d->getSize(), NVBUF_COLOR_FORMAT_RGBA, NVBUF_LAYOUT_PITCH, rotationToNVRot.at(m_rotation));
         
         if (fd == -1)
         {
@@ -754,15 +742,15 @@ bool argusCameraDriver::getImage(yarp::sig::ImageOf<yarp::sig::PixelRgb>& image)
         gpu_rgba_img.upload(rgba_img);
         cv::cuda::cvtColor(gpu_rgba_img, gpu_bgr_img, cv::COLOR_RGBA2BGR);
 
-        if (!m_rotation_with_crop && m_rotation != 0.0)
-        {
-            cv::Point2f img_center((gpu_bgr_img.cols - 1) / 2.0, (gpu_bgr_img.rows - 1) / 2.0);
-            cv::Mat M = cv::getRotationMatrix2D(img_center, m_rotation, 1.0);
-            // Workaround since with cv::cuda::warpAffine, source and dest images CANNOT be the same (otherwise will result in black frames)
-            cv::cuda::GpuMat tmp;
-            cv::cuda::warpAffine(gpu_bgr_img, tmp, M, gpu_bgr_img.size());
-            gpu_bgr_img = std::move(tmp);
-        }
+        // if (!m_rotation_with_crop && m_rotation != 0.0)
+        // {
+        //     cv::Point2f img_center((gpu_bgr_img.cols - 1) / 2.0, (gpu_bgr_img.rows - 1) / 2.0);
+        //     cv::Mat M = cv::getRotationMatrix2D(img_center, m_rotation, 1.0);
+        //     // Workaround since with cv::cuda::warpAffine, source and dest images CANNOT be the same (otherwise will result in black frames)
+        //     cv::cuda::GpuMat tmp;
+        //     cv::cuda::warpAffine(gpu_bgr_img, tmp, M, gpu_bgr_img.size());
+        //     gpu_bgr_img = std::move(tmp);
+        // }
         
         if (m_width != width || m_height != height)
         {
@@ -773,12 +761,12 @@ bool argusCameraDriver::getImage(yarp::sig::ImageOf<yarp::sig::PixelRgb>& image)
 #else
         cv::cvtColor(rgba_img, bgr_img, cv::COLOR_RGBA2BGR);
 
-        if (!m_rotation_with_crop && m_rotation != 0.0)
-        {
-            cv::Point2f img_center((bgr_img.cols - 1) / 2.0, (bgr_img.rows - 1) / 2.0);
-            cv::Mat M = cv::getRotationMatrix2D(img_center, m_rotation, 1.0);
-            cv::warpAffine(bgr_img, bgr_img, M, bgr_img.size());
-        }
+        // if (!m_rotation_with_crop && m_rotation != 0.0)
+        // {
+        //     cv::Point2f img_center((bgr_img.cols - 1) / 2.0, (bgr_img.rows - 1) / 2.0);
+        //     cv::Mat M = cv::getRotationMatrix2D(img_center, m_rotation, 1.0);
+        //     cv::warpAffine(bgr_img, bgr_img, M, bgr_img.size());
+        // }
         
         if (m_width != width || m_height != height)
         {
