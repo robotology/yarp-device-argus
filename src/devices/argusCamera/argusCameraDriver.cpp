@@ -401,8 +401,11 @@ bool argusCameraDriver::setFeature(int feature, double value)
             b = true;
             break;
         case YARP_FEATURE_SATURATION:
-            m_iAutoControlSettings->setColorSaturation(fromZeroOneToRange(f, value));
-            b = true;
+            b = m_iAutoControlSettings->setColorSaturationEnable(true) == STATUS_OK;
+            if (b)
+            {
+                m_iAutoControlSettings->setColorSaturation(fromZeroOneToRange(f, value));
+            }
             break;
         case YARP_FEATURE_SHARPNESS:
             m_iEdgeEnhanceSettings->setEdgeEnhanceMode(EDGE_ENHANCE_MODE_HIGH_QUALITY);
